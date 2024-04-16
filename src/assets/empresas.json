@@ -1,0 +1,35 @@
+{
+    "empresas": [
+      {
+        "nombre": "FashionWorld",
+        "pais": "USA",
+        "ciudad": "Nueva York",
+        "comercio_mundial": true
+      },
+      {
+        "nombre": "ElectroMundo",
+        "pais": "USA",
+        "ciudad": "Los Ángeles",
+        "comercio_mundial": true
+      },
+      {
+        "nombre": "TechStore",
+        "pais": "Germany",
+        "ciudad": "Berlín",
+        "comercio_mundial": true
+      },
+      {
+        "nombre": "FotoShop",
+        "pais": "France",
+        "ciudad": "París",
+        "comercio_mundial": false
+      },
+      {
+        "nombre": "GameWorld",
+        "pais": "UK",
+        "ciudad": "Londres",
+        "comercio_mundial": true
+      }
+    ]
+  }
+  

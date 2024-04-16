@@ -1,0 +1,538 @@
+html, body{
+    background-color:rgba(246, 250, 252);
+    overflow-x: hidden;
+}
+.root{
+    flex: 1;
+}
+.related-undefined{
+ 
+    width: 50%;
+}
+.related-true{
+    padding: 20px;
+    max-height:200px;
+    max-width:200px;
+
+}
+
+
+
+.detailsContainer{
+    
+    width: 33%;
+}
+.sellercnt{
+    width: 20%;
+    *{
+        font-size: 1em;
+    }
+}
+.lettervendor{
+    font-size: 200%;
+    
+    background-color: #C6F3F1;
+    padding: 10px 20px ;
+
+}
+.PhotoCnt{
+    margin-right:1%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+
+
+
+
+
+.detailscntTxt{
+    font-size: 100%;
+}
+.detailscntImg{
+   width:  70%;
+}
+.gallery{
+    width: 17%;
+    padding: 3px;
+    border: 2px solid rgba(255, 254, 254, 0.377);
+} 
+.galleryPrc{
+    border: 2px solid rgb(0, 0, 0);
+} 
+.galleryZoom{
+    
+    width: 30%;
+}
+.principal{
+    width: 100%;
+}
+.rating{
+    display: inline;
+}
+
+td { padding-left: 15px; padding-right: 10px; }
+.line{
+   td
+   {border-bottom: 1px solid;
+   padding-bottom: 20px;}
+}
+ .outline{
+    td
+    {
+    padding-top: 20px;}
+ }
+.vendor{
+    justify-content: center;
+    padding: 20px 15px;
+}
+.imgVendor{
+    width: 20px;
+    
+}
+.btn-related-true{
+    width: 220px;
+    height: 310.78px;
+}
+.related-txtBox{
+    text-align: start;
+}
+
+table.info{
+    th{
+    background-color: #E0E7E9;
+    padding: 10px;
+    
+    
+}
+    td{
+        font-size: 100%;
+    }
+}
+ul {
+    list-style: none;
+    font-size: 80%;
+  }
+ul li:before {
+    content: '✓        ';
+    font-size: 20px;
+  }
+
+
+/*@media (max-width:1400px){
+
+     .principal{
+        
+    }
+    .gallery{
+        width: 40px;
+    }
+    .detailscnt *{
+        font-size: 15px;
+        
+    }
+    .discount{
+        width: 300px;
+    } 
+    .btn-related-true{
+        zoom: 80%;
+    }
+    .btn-related-undefined{
+        zoom: 70%;
+    }
+    
+}
+@media (max-width:992px){
+    .btn-related-true{
+        zoom: 50%;
+    }
+    .btn-related-undefined{
+        zoom: 50%;
+    }
+}
+@media (max-width:768px){
+    .btn-related-true{
+        zoom: 35%;
+    }
+    .btn-related-undefined{
+        zoom: 40%;
+    }
+}
+
+@media (max-width:600px){
+    
+    .btn-related-true{
+        zoom: 30%;
+    }
+    .btn-related-undefined{
+        zoom: 30%;
+    }
+}
+@media (max-width:383px){
+    
+    .btn-related-true{
+        zoom: 25%;
+    }
+    .btn-related-undefined{
+        zoom: 25%;
+    }
+    .nav{
+        zoom: 25%;
+    }
+}
+ */
+ .detailWidth{
+    width: 100%;
+     padding:3rem ;
+}
+.element{
+    height: calc(33.33% - 10px);
+    margin-bottom: 20px;
+    
+  box-sizing: border-box; /* Incluye padding y borde en el ancho y alto */
+}
+.imageblock{
+    justify-content: end;
+}
+.photocontent{
+    padding-left: 200px;
+}
+
+.imgLan{
+    width: 24px;
+          height: auto;
+          object-fit:contain;
+} 
+.nav_img{
+    background-color: white;
+    border: none;
+}
+.nav_form{
+    padding-right:20px ;
+    display: flex;
+    justify-content: end;
+}
+.brandPhrase{
+    font-size: 90%;
+}
+.padding-footer{
+    padding:1.5rem 4rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+footer{ 
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+
+}
+.footfooter{
+    
+    background:#DEE2E7;
+}
+@media  (min-height:2792px){
+    footer{
+        position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: white;
+    
+    }
+}
+@media  (max-width:1400px){
+    body,footer{
+        max-width: 1400px;
+    }
+    footer{
+    
+    .col{
+        /* padding-left: 20px;
+        flex: 0;
+        img{
+            width: 70%;
+        } */
+    }
+    .col-1{
+        width: 15%;
+        font-size: small;
+        font-size: 70%;
+        img{
+            width: 70%;
+        }
+        justify-content: end;
+    }
+    .about{
+        
+    }
+    .padding-footer{
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+}}
+@media  (max-width:1200px){
+    
+    .lettervendor{
+        font-size: 170%;
+        
+        background-color: #C6F3F1;
+        padding: 9px 10px ;
+    
+    }
+   
+    
+    
+}
+@media  (max-width:991px){
+    
+    .detailsContainer{
+    
+        width: 80%;
+    }
+    .sellercnt{
+        width: 20%;
+        *{
+            font-size: 1em;
+        }
+    }
+    .lettervendor{
+        font-size: 150%;
+        
+        background-color: #C6F3F1;
+        padding: 10px 20px ;
+    
+    }
+    .PhotoCnt{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .detailscntTxt{
+        font-size: 80%;
+    }
+    td { padding-left: 5px; padding-right: 5px; }
+    .line{
+       td
+       {border-bottom: 1px solid;
+       padding-bottom: 20px;}
+    }
+    .sellercnt{
+        width: 30%;
+        *{
+            font-size: 1em;
+        }
+    }
+    .detailscntTitle{
+        font-size: 150%;
+}
+.principal{
+    width: 100%;
+}
+.detailWidth{
+    width: 100%;
+     padding:1rem;
+}
+.gallery{
+    width: 17%;
+    border: 2px solid rgba(207, 207, 207, 0.377);
+} 
+footer{
+    
+    .col{
+        padding-left: 10px;
+        padding-right: 0px;
+        font-size: 80%;
+        img{
+            width: 60%;
+        }
+    }
+    .col-1{
+        width: 15%;
+        font-size: small;
+        font-size: 70%;
+        img{
+            width: 70%;
+        }
+    }
+    .about{
+        
+        width: 10%;
+    }.info{
+        width: 16%;
+    }
+    .partner{
+        
+        width: 16%;
+    }
+    .users{
+        
+        width: 16%;
+    }
+    .padding-footer{
+        padding-right: 1.5rem ;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+}
+}
+@media  (max-width:768px){
+    .gallery{
+        width: 16.67%;
+        border: 2px solid rgba(207, 207, 207, 0.377);
+    } 
+    
+    .sellercnt{
+        width: 20%;
+        *{
+            font-size: 1em;
+        }
+    }
+    .lettervendor{
+        font-size: 190%;
+        
+        background-color: #C6F3F1;
+        padding: 16px 15px ;
+    
+    }
+    .PhotoCnt{
+        width: 90%;
+        margin-right:1%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .detailscntTxt{
+        font-size: 50%;
+    }
+    td { padding-left: 5px; padding-right: 5px; }
+    .line{
+       td
+       {border-bottom: 1px solid;
+       padding-bottom: 5px;}
+    }
+    .sellercnt{
+        width: 40%;
+        *{
+            font-size: 1em;
+        }
+    }
+    .detailscntTitle{
+        font-size: 140%;
+    }
+    .outline{
+        td
+        {
+        padding-top: 5px;}
+     }
+     .nav{
+        width:95%;
+     }
+    .principal{
+        width: 100%;
+    }
+    .detailWidth{
+        width: 80%
+    }
+    .dataSeller{
+        font-size: 70%;
+    }
+    .vendor>*{
+        font-size: 70%;
+    }
+
+    footer{
+    
+        .col{
+            width: 20%;
+            padding-left: 0px;
+            padding-right: 0px;
+            font-size: 70%;
+            img{
+                width: 100%;
+            }
+        }
+        .col-1{
+            font-size: small;
+            font-size: 70%;
+            img{
+                width: 70%;
+            }
+        }
+        .about{
+            
+            width: 15%;
+        }.info{
+            width: 18%;
+        }
+        .partner{
+            
+            width: 18%;
+        }
+        .users{
+            
+            width: 16.8%;
+        }
+        .app{
+            width: 20%;
+        }
+        .padding-footer{
+            padding-right: 0rem ;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+    
+    }   
+
+}
+@media(max-width:575px){
+    .nav_img{
+        padding: 0px;
+    }
+    .nav_img>img{
+        width: 70%;
+    }
+    .nav_form{
+        padding-right:20px ;
+        display: flex;
+        justify-content: end;
+    }
+    .nav_form_input{
+        width: 30%;
+    }
+    .nav{
+        width: 108%;
+    }
+}
+@media(max-width:550px){
+    .nav_img{
+        padding: 0px;
+    }
+    .nav_img>img{
+        width: 60%;
+    }
+    
+    .nav_form_input{
+        width: 30%;
+    }
+    .nav{
+        width: 120%;
+    }
+}
+@media(max-width:300px){
+    .nav_img{
+        padding: 0px;
+    }
+    .nav_img>img{
+        width: 60%;
+    }
+    
+    .nav_form_input{
+        width: 30%;
+    }
+    .nav{
+        width: 210%;
+    }
+    .detailWidth{
+        width: 6;
+    }
+}
