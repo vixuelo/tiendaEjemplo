@@ -14,7 +14,7 @@ export const DetailsContent = ({item}) => {
     />
     <h5 className='px-1  text-warning'>{item.rating}</h5>
     </div>.
-    <img className="detailscntImg"src="src/assets/Layout/discount/Trade price.png" alt="" />
+    <img className="detailscntImg"src="./src/assets/Layout/discount/Trade price.png" alt="" />
      <div className="w-75 pt-3">
      <table>
       <tr className='line'>

@@ -3,8 +3,8 @@ var modelo = null;var modelo2 = null;
 //Cargar modelo
 (async () => {
     console.log("Cargando modelo...");
-    modelo = await tf.loadGraphModel("src/assets/modeloIA/Modelo5/model.json");
-    modelo2 = await tf.loadGraphModel("src/assets/modeloIA/Modelo10/model.json");
+    modelo = await tf.loadGraphModel("/src/assets/modeloIA/modelo5/model.json");
+    modelo2 = await tf.loadGraphModel("/src/assets/modeloIA/modelo10/model.json");
     console.log("Modelo cargado...");
 })();
 function sliceN(array, numeroDePartes) {
