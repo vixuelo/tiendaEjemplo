@@ -35,13 +35,13 @@ export const ItemContent = ({ item, col, related }) => {
     const imagen = document.getElementById(`image${item.referencia}`);
     imagen.alt="cargando..."
     
-    imagen.src =imagenes[indexImg].url;
+    imagen.src =imagenes[indexImg]?.url;
   }
 useEffect(() => {
   (async () => {
     const resultado = await verificarURL(item.url);
     if(resultado===false){
-      setimage(imagenes[indexImg].url)
+      setimage(imagenes[indexImg]?.url)
     }
   })();
 }, [])

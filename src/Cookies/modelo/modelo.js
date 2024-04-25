@@ -18,12 +18,14 @@ const limpiarCookies = (cookies)=>{
 }
 
 
-export const modeloIntegrado = async (num_products, cookies = [], setprediccion) => {
+export const modeloIntegrado = async (num_results, cookies = [], setprediccion,mainpage=false) => {
+    
     console.log({ cookies });
     const cookiesLimpias = limpiarCookies(cookies);
     console.log({ cookiesLimpias })
     if (cookiesLimpias.length > 6) {
-        const model = modelo(num_products);
+        if(mainpage===true){
+        const model = modelo(15);
         const secuencias_truncadas = sliceTamanoN(cookiesLimpias, 3);
         const clientes = [];
 
@@ -55,7 +57,10 @@ export const modeloIntegrado = async (num_products, cookies = [], setprediccion)
                                 getAllItems()[argMax(prediccion)]
                             );
                             console.log({ prediccionesFinalesArr });
-                             setprediccion(limpiarCookies(prediccionesFinalesArr));
+                            
+                                setprediccion(limpiarCookies(prediccionesFinalesArr).slice(-num_results,-1));
+                             
+                             console.log("predicciones",limpiarCookies(prediccionesFinalesArr),num_results)
                         }
                     }
                 }
@@ -63,7 +68,31 @@ export const modeloIntegrado = async (num_products, cookies = [], setprediccion)
         } catch (error) {
             console.error('Error ajustando el modelo:', error);
         }
-
+        const saveResult = await model.save('localstorage://modelo');
+        console.log(saveResult)
+    }else{
+        // Paso 1: Obtén el JSON del modelo almacenado en localStorage
+ 
+ const model = await tf.loadLayersModel('localstorage://modelo').then(modeloTensorFlow => {
+   // El modelo se ha cargado correctamente
+   console.log('Modelo cargado:', modeloTensorFlow);
+   const result = modeloTensorFlow.predict(tf.tensor1d(cookiesLimpias.slice(cookiesLimpias.length - 10, cookiesLimpias.length))).arraySync();
+   const predicciones = sliceTamanoN(result[0], getAllItems().length);
+   console.log({predicciones})
+   const prediccionesFinalesArr = predicciones.map((prediccion) =>
+       getAllItems()[argMax(prediccion)]
+   );
+   console.log({ prediccionesFinalesArr });
+ 
+    setprediccion(limpiarCookies(prediccionesFinalesArr));
+ 
+ console.log("predicciones no main",limpiarCookies(prediccionesFinalesArr),num_results)
+   // Ahora puedes usar el modelo TensorFlow aquí
+ }).catch(error => {
+   // Ocurrió un error al cargar el modelo
+   console.error('Error al cargar el modelo:', error);
+ });
+     }
     } else {
         console.log("Pocas cookies", cookiesLimpias);
     }

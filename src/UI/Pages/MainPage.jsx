@@ -19,13 +19,13 @@ export const MainPage = () => {
       const lastItems = JSON.parse(localStorage.getItem("cookiesLastItem"))||[];
       setLastItems(lastItems);
       
-    modeloIntegrado(10, LastItems,setPredicciones)
+    modeloIntegrado(10, LastItems,setPredicciones,true)
     }
   }, [loc]);
 
   useEffect(() => {
     if (LastItems.length > 0) {
-      modeloIntegrado(10, LastItems,setPredicciones)
+      modeloIntegrado(10, LastItems,setPredicciones,true)
       console.log({predicciones})
     }
   }, [LastItems]);

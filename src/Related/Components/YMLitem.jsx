@@ -23,7 +23,7 @@ export const YMLitem = ({item}) => {
             const imagen = document.getElementById(`image${item.referencia}yml`);
             imagen.alt="cargando..."
             
-            imagen.src =imagenes[index].url;
+            imagen.src =imagenes[indexImg].url;
           }
           useEffect(() => {
             console.log("Debug imgs:")
