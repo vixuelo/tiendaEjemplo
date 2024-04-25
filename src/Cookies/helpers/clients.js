@@ -10,20 +10,27 @@ export const getClientByKey = (key) => {
 
 }
 export const addItemOnCookies = (item) => {
-  const key = localStorage.getItem("actualKeyID");
-  // console.log({key});
-  const client = getClientByKey(key);
-  // console.log({client});
-  client["itemsCount"]=client["itemsCount"]+1;
-  client[`item${client["itemsCount"]}`]=item.nombre;
-  client["items"].push(item.nombre);
-  // console.log({client});
-    const cookies = JSON.parse(localStorage.getItem("cookiesHistorial"));
-    const cookiesFinal = cookies.filter((client) => client["keyID"] !== key);
-    cookiesFinal.push(client);
-    localStorage.setItem("cookiesHistorial", JSON.stringify(cookiesFinal));
+  const arrayItemsCliente=[]
+  const arrayItemsClienteRet=[]
+  if (item!==null){
+  const lastItem = JSON.parse(localStorage.getItem("cookiesLastItem"))||[];
+  console.log(lastItem)
+  if (item.nombre!==null){
+
+    if(lastItem.length>0 )
+    {
+      if(lastItem[length-1]!==item.nombre)
+      {
+        lastItem.push(item.referencia);
+      }
+    }else{
+      lastItem.push(item.referencia);
+    }
     
-  
+  }
+    localStorage.setItem("cookiesLastItem", JSON.stringify(lastItem));
+    return lastItem;
+  }
   }
   
   

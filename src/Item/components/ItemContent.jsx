@@ -10,12 +10,23 @@ export const ItemContent = ({ item, col, related }) => {
   const params = useParams();
 
  
-  
-  
-  const { imagenes, cargando } = useFetchImgs(item.subcategoria);
-  
-  const index = Math.floor(Math.random()*imagenes.length);
-  console.log({index})
+  const nombre =item.subcategoria.replaceAll(" ", "+");
+  const { imagenes, cargando } = useFetchImgs(nombre);
+
+  const [image, setimage] = useState(item.url)
+  const [indexImg, setindexImg] = useState(0)
+ useEffect(() => {
+  if(imagenes.length>0){
+    setindexImg(item.referencia%imagenes.length)
+    const imagen = document.getElementById(`image${item.referencia}`);
+  imagen.src =imagenes[indexImg]?.url;
+  }
+  console.log("Debug de imagenes en itemContent")
+   console.log({imagenes,indexImg})
+   console.log("nombre:",item.nombre)
+   console.log("fin de imagenes en itemContent")
+   
+ }, [cargando, imagenes,indexImg,item])
  
 
   // Función para manejar errores de carga de imagen
@@ -24,8 +35,16 @@ export const ItemContent = ({ item, col, related }) => {
     const imagen = document.getElementById(`image${item.referencia}`);
     imagen.alt="cargando..."
     
-    imagen.src =imagenes[index].url;
+    imagen.src =imagenes[indexImg].url;
   }
+useEffect(() => {
+  (async () => {
+    const resultado = await verificarURL(item.url);
+    if(resultado===false){
+      setimage(imagenes[indexImg].url)
+    }
+  })();
+}, [])
 
 
   
@@ -36,10 +55,12 @@ export const ItemContent = ({ item, col, related }) => {
     }
   };
 
+  // const [image, setimage] = useState();
+
   return (
-    <>{cargando?(<p>cargando</p>):<>
+    <>
     <button
-      className={` btn-related-${related} border rounded `}
+      className={` itemContent btn-related-${related} border rounded `}
       onClick={onClickItem}
       style={{
         background: 'white',
@@ -55,7 +76,7 @@ export const ItemContent = ({ item, col, related }) => {
       >
         <img
           className={`related-${related}`}
-          src={verificarURL(item.url)?item.url:imagenes[index].url}
+          src={image}
           id={`image${item.referencia}`}
           onError={errorImg} // Manejar errores de carga de imagen
           alt={item.nombre}
@@ -64,11 +85,11 @@ export const ItemContent = ({ item, col, related }) => {
       {related ? null : <hr />}
       <div className={`related-txtBox`}>
         <h1><b>$ {item.precio}</b></h1>
-        <h4><img src={`src/assets/Layout/Stars/${Math.floor(item.rating)}stars.png`} alt="stars" />- <small>{item.rating}</small></h4>
+        <h4><img src={`/src/assets/Layout/Stars/${Math.floor(item.rating)}stars.png`} alt="stars" />- <small>{item.rating}</small></h4>
         <h4><small>{item.nombre}</small></h4>
         <h4><small>{item.subcategoria}</small></h4>
       </div>
     </button>
-  </>}</>
+  </>
   );
 };

@@ -12,6 +12,7 @@ import {addItemOnCookies} from '../../Cookies/helpers/clients';
 import { RelatedComponent } from '../../Related/Components/RelatedComponent';
 import { Bottom } from '../../UI/Components/Bottom';
 import { NavBar } from '../../UI/Components/NavBar';
+import { modeloIntegrado } from '../../Cookies/modelo/modelo';
 
 export const ItemPage = () => {
   const key = localStorage.getItem("actualKeyID");
@@ -21,30 +22,25 @@ export const ItemPage = () => {
   
   const arrayVacio=[]
   const {itemId} = useParams();
+  console.log(itemId)
   const item = getItemById(itemId);
- 
+  
+  const lastItems= addItemOnCookies(item);
+  
+  const [predicciones, setPredicciones] = useState([]);
+  const [predicciones10, setPredicciones10] = useState([]);
+  const [predicciones5, setPredicciones5] = useState([]);
   const vendedor=getVendedorbyName(item.vendedor);
-  addItemOnCookies(item);
   
-  const lastItems = localStorage.getItem("cookiesLastItem")===(null)? arrayVacio:JSON.parse(localStorage.getItem("cookiesLastItem"));
   
-  if(lastItems[lastItems.length-1]!==item.referencia){
-    lastItems.push(item.referencia);
-  }
-  localStorage.setItem("cookiesLastItem", JSON.stringify(lastItems));
-  const cookies = JSON.parse(localStorage.getItem("cookiesHistorial"));
-  const arrayprediccion5 = lastItems.slice(lastItems.length-1-11,lastItems.length-1)
-  const arrayprediccion10 = lastItems.slice(lastItems.length-1-3,lastItems.length-1)
-  const arrayIndexNext5=predecirSiguiente5(arrayprediccion5);
-  const arrayProdNext5=filterUniques(parseoPredicion(arrayIndexNext5));
-  const arrayIndexNext10=predecirSiguiente10(arrayprediccion10);
-  const arrayProdNext10=filterUniques(parseoPredicion(arrayIndexNext10));
+  
+  
+
   useEffect(() => {
-    console.log("Debug cookies:")
-    console.log({cookies})
+    modeloIntegrado(15, lastItems,setPredicciones)
+    console.log({predicciones})
     
-    console.log("Fin debug cookies:")
-  }, [cookies])
+  }, [item])
   
   useEffect(() => {
     console.log("Debug lastItem:")
@@ -53,20 +49,16 @@ export const ItemPage = () => {
   }, [lastItems])
   
   useEffect(() => {
-    console.log("Debug arrayProdNext5:")
-    console.log({arrayprediccion5})
-    console.log({arrayIndexNext5})
-    console.log({arrayProdNext5})
-    console.log("Fin debug arrayProdNext5:")
-  }, [arrayProdNext5])
+    if (predicciones.length>0)
+    {console.log("Debug predicciones10:")
+    setPredicciones10(predicciones.slice(0,10))
+    console.log("Fin debug predicciones10:") 
+    console.log("Debug predicciones5:")
+    setPredicciones5(predicciones.slice(10,15))
+    console.log("Fin debug predicciones5:")}
+  }, [predicciones])
   
-  useEffect(() => {
-    console.log("Debug cookiarrayProdNext10:")
-    console.log({arrayprediccion10})
-    console.log({arrayIndexNext10})
-    console.log({arrayProdNext10})
-    console.log("Fin debug arrayProdNext10:")
-  }, [arrayProdNext10])
+ 
   
 
 
@@ -116,13 +108,13 @@ export const ItemPage = () => {
       <DescContent item={item}/>
       <div className='d-flex border bg-white rounded m-1 p-3'>
         
-          <YMLContent items={arrayProdNext5}item={item}/>
+          <YMLContent items={predicciones5}item={item}/>
       </div>
     </div>
         </div>
     </div>
  </div>
-    <RelatedComponent items={arrayProdNext10}item={item}/>
+    <RelatedComponent cookies={predicciones10}item={item}/>
     <Bottom/>
     </>
   )

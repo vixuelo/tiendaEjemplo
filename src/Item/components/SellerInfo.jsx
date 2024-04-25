@@ -10,7 +10,7 @@ export const SellerInfo = ({vendedor}) => {
     </div>
   </div>
   <hr />
-  <h4 className="dataSeller d-flex  justify-content-start"> <img className='imgVendor' src={`src/assets/Flags/${vendedor.pais}/flag.svg`} alt="flag" /> {`${vendedor.pais},${vendedor.ciudad}`}</h4>
+  <h4 className="dataSeller d-flex  justify-content-start"> <img className='imgVendor' src={`/src/assets/Flags/${vendedor.pais}/flag.svg`} alt="flag" /> {`${vendedor.pais},${vendedor.ciudad}`}</h4>
   <h4 className="dataSeller"><img src="\src\assets\Layout\users\verified_user.png" alt="tV" /> Verified</h4>
   <h4 className="dataSeller"><img src="\src\assets\Layout\world\wwship.png" alt="tV" /> Worldwide shipping</h4>
   <div className="d-block justify-content-center">

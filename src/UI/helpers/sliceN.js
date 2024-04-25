@@ -1,12 +1,11 @@
-export const sliceN=(array, numeroDePartes)=> {
-    const longitud = array.length;
-    const longitudParte = Math.ceil(longitud / numeroDePartes);
-    const partes = [];
-    
-    for (let i = 0; i < longitud; i += longitudParte) {
-      const parte = array.slice(i, i + longitudParte);
-      partes.push(parte);
-    }
-    
-    return partes;
-    }
+export const sliceN=(array, tamanoTrozo)=> {
+  if (typeof array !== "undefined"){
+    const resultados = [];
+  for (var i = 0; i < array.length; i += tamanoTrozo) {
+      resultados.push(array.slice(i, i + tamanoTrozo));
+  }
+  return resultados;
+  }else{
+    return [];
+  }
+ }

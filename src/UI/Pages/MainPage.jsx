@@ -1,46 +1,50 @@
-import React from 'react'
-import { SearchBody } from '../../Search/Pages/SearchBody'
-import { useLocation } from 'react-router-dom'
-import { NavBar } from '../Components/NavBar'
-import { RelatedComponent } from '../../Related/Components/RelatedComponent'
-import { Bottom } from '../Components/Bottom'
-import {items} from '../../assets/productos'
-export const MainPage = () => {
-  const itemsNames=[];
-  items.map((item)=>{
-    itemsNames.push(item.nombre);
-  })
-  console.log(itemsNames);
-  const keyEjemplo=JSON.stringify([
-  
-  ]);
-  
-const cookiesJSON = localStorage.getItem("cookiesHistorial")===null?keyEjemplo:localStorage.getItem("cookiesHistorial");
-const cookiesLastItems = localStorage.getItem("cookiesLastItem")===null?keyEjemplo:localStorage.getItem("cookiesHistorial");
-  const cookies = JSON.parse(cookiesJSON);
-  
-  const {key}=useLocation();
-  localStorage.setItem("actualKeyID", key);
-  cookies.push({
-    keyID:key, itemsCount:0,items:[]
-  })
-  console.log({cookies})
-  localStorage.setItem("cookiesHistorial", JSON.stringify(cookies) );
-  localStorage.setItem("cookiesLastItems", JSON.stringify(cookiesLastItems) );
+import React, { useState, useEffect } from 'react';
+import { MainBody, SearchBody } from '../../Search/Pages/SearchBody';
+import { useLocation } from 'react-router-dom';
+import { NavBar } from '../Components/NavBar';
+import { RelatedComponent } from '../../Related/Components/RelatedComponent';
+import { Bottom } from '../Components/Bottom';
+import { items } from '../../assets/productos';
+import { getAllItemsBySearch } from '../../Item/helpers/helpersItems';
+import { modeloIntegrado } from '../../Cookies/modelo/modelo';
 
+export const MainPage = () => {
+  const loc = useLocation();
+  const search = loc.search;
+  const [LastItems, setLastItems] = useState([])
+  const [predicciones, setPredicciones] = useState([])
+  
+  useEffect(() => {
+    if (search === "") {
+      const lastItems = JSON.parse(localStorage.getItem("cookiesLastItem"))||[];
+      setLastItems(lastItems);
+      
+    modeloIntegrado(10, LastItems,setPredicciones)
+    }
+  }, [loc]);
+
+  useEffect(() => {
+    if (LastItems.length > 0) {
+      modeloIntegrado(10, LastItems,setPredicciones)
+      console.log({predicciones})
+    }
+  }, [LastItems]);
+  useEffect(() => {
+    console.log("debug: ",{predicciones})
+  }, [predicciones])
+  
 
   
   return (
     <>
-    <NavBar/>
-    <div className=" container d-flex justify-content-center"
-        
-    >
-        <SearchBody random={true}/>
-
-    </div>
-    <RelatedComponent/>
-    <Bottom/>
+      <NavBar />
+      <div className="container d-flex justify-content-center">
+        {search !== "" ? <SearchBody search={search} /> : <MainBody />}
+      </div>
+      {predicciones.length>0&&<RelatedComponent cookies={predicciones} />}
+      <Bottom />
     </>
-  )
-}
+  );
+};
+
+export default MainPage;

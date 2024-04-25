@@ -43,7 +43,7 @@ export const YMLContent = ({items,item}) => {
                     }
            
         }
-    }, [ productos,isLoadingProductos, params]);
+    }, [ productos,isLoadingProductos, params,items]);
     useEffect(() => {
      console.log(productosData)
     }, [productosData])
@@ -61,7 +61,9 @@ export const YMLContent = ({items,item}) => {
     
     return (
             <div className='d-block-flex '>
-            <h6 className='p-3'>You May Like {items.length}</h6>
+            <h6 className='p-3'>You May Like 
+            {/* {items.length} */}
+            </h6>
             {isLoadingProductos ? (
                 <p>Cargando productos...</p>
             ) : (

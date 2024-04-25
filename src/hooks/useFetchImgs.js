@@ -9,14 +9,10 @@ export const useFetchImgs= (name,referencia) => {
     const [isLoadingImages, setIsLoading] = useState(true);
     useEffect(() => {
         console.log("Debug newImages en fetchImgs")
-        console.log({images})
+        console.log({images,name,isLoadingImages})
         console.log("fin newImages en fetchImgs")
-    }, [images])
-    useEffect(() => {
-        console.log("Debug name en fetchImgs")
-        console.log(name)
-        console.log("fin name en fetchImgs")
-    }, [name])
+    }, [images,name])
+    
     
     
     const getImages=async()=>{

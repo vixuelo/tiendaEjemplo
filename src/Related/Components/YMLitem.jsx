@@ -14,8 +14,9 @@ export const YMLitem = ({item}) => {
             }
         }
         const [image, setimage] = useState(item.url);
-        const { imagenes, cargando } = useFetchImgs(item.nombre.replace(" ","+")+"+"+item.subcategoria);
-        const index = Math.floor(Math.random()*imagenes.length);
+        const { imagenes, cargando } = useFetchImgs(item.subcategoria.replaceAll(" ","+"));
+      const [indexImg, setindexImg] = useState(0)
+        
  
         const errorImg=()=>{
 
@@ -28,12 +29,24 @@ export const YMLitem = ({item}) => {
             console.log("Debug imgs:")
             console.log({imagenes})
             if (imagenes.length>0){
-                setimage(imagenes[index].url);
+                setimage(imagenes[0].url);
             }
             console.log(cargando)
             console.log("Fin imgs:")
-          }, [imagenes,cargando])   
-         
+          }, [imagenes,item.referencia])   
+          useEffect(() => {
+            if(imagenes.length>0){
+              setindexImg(item.referencia%imagenes.length)
+              const imagen = document.getElementById(`image${item.referencia}yml`);
+            imagen.src =imagenes[indexImg]?.url;
+            }
+            console.log("Debug de imagenes en itemContent")
+             console.log({imagenes,indexImg})
+             console.log("nombre:",item.nombre)
+             console.log("fin de imagenes en itemContent")
+             
+           }, [cargando, imagenes,indexImg,item])
+           
               
           useEffect(() => {
             setimage(item.url)

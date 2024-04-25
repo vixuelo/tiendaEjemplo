@@ -1,19 +1,24 @@
 import {items} from '../../assets/productos'
-export const  verificarURL=(url) =>{
-  fetch(url)
-    .then(response => {
-      if (!response.ok) {
-        return(false)
-      } else {
-        console.log("La URL está funcionando correctamente.");
-        return(true)
-      }
-    })
-    .catch(error => {
-      console.error(`error con ${url}: `,error)
-      return(false)
-    });
+export const verificarURL = async (url) => {
+  if (url === '') {
+    return false;
+  }
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok || response.headers.get('status') === '404' || response.headers.get('Content-Type').startsWith('text/plain')) {
+      return false;
+    } else {
+      return true;
+    }
+  } catch (error) {
+    return false;
+  }
 }
+
+
+
+
 export const getNItemsRandomly = async (number, itemsActuales = [],item) => {
   console.log("hola1")
   if (number === 0) {
@@ -22,7 +27,6 @@ export const getNItemsRandomly = async (number, itemsActuales = [],item) => {
 
   const itemsReturn = [];
   
-  console.log({ number });
   // Obtén los índices disponibles excluyendo los elementos actuales
   const indicesDisponibles = itemsActuales.length > 0
   ? Array.from({ length: items.length }, (_, i) => i).filter(index => !itemsActuales.includes(items[index]) && items[index] !== item)
@@ -34,7 +38,6 @@ export const getNItemsRandomly = async (number, itemsActuales = [],item) => {
     const item = items[randomIndex];
     itemsReturn.push(item);
     indicesDisponibles.pop(index); // Elimina el índice utilizado
-    console.log({indicesDisponibles})
   }
   return itemsReturn;
 }
@@ -46,7 +49,6 @@ export const parseoPredicion=(prediccion)=>{
     return [];
   }
   const indexPredicciones=[]
-  console.log({prediccion});
   prediccion.map((pred)=>{
       indexPredicciones.push(getItemById(pred))
   })
@@ -57,4 +59,21 @@ export const parseoPredicion=(prediccion)=>{
 export const filterUniques=(array)=>{return array.filter((value, index, arr) => 
   value !== undefined && arr.indexOf(value) === index
 );
+}
+
+export const getAllItemsBySearch = (search) => {
+  return items.filter(item => {
+    // Itera sobre cada campo del item
+    for (let key in item) {
+      // Verifica si el valor del campo es una cadena y si contiene la búsqueda
+      if (typeof item[key] === 'string' && item[key].toLowerCase().includes(search.toLowerCase())) {
+        return true; // Retorna true si se encuentra la cadena de búsqueda en algún campo
+      }
+    }
+    return false; // Retorna false si la búsqueda no se encuentra en ningún campo
+  });
+}
+export const getAllItems=()=>{
+
+  return items;
 }

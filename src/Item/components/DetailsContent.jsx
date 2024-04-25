@@ -7,14 +7,29 @@ export const DetailsContent = ({item}) => {
     <h1 className='w-75 detailscntTitle'>{item.nombre}</h1>    <h3>{item.precio}€</h3>
 
     <div className="d-flex w-50">  
-    <img src={`src/assets/Layout/Stars/${Math.floor(item.rating)}stars.png`} alt="stars" 
+    <img src={`/src/assets/Layout/Stars/${Math.floor(item.rating)}stars.png`} alt="stars" 
     style={{
       objectFit:'contain'
     }}
     />
     <h5 className='px-1  text-warning'>{item.rating}</h5>
-    </div>.
-    <img className="detailscntImg"src="./src/assets/Layout/discount/Trade price.png" alt="" />
+    </div>
+    {/* <img className="detailscntImg"src="/src/assets/Layout/discount/Trade price.png" alt="" /> */}
+    <div className="d-flex justify-content-start pt-1 pb-1 descuentosCnt">
+    <div className="d-block-flex descuentos">
+      <div className="">{Math.floor(item.precio*0.90)}.00€</div>
+      <div className="">50-100 pcs</div>
+      
+      </div>
+    <div className="d-block-flex descuentos">
+      <div className="">{Math.floor(item.precio*0.70)}.00€</div>
+      <div className="">100-700 pcs</div>
+      </div>
+    <div className="d-block-flex descuentos">
+      <div className="">{Math.floor(item.precio*0.50)}.00€</div>
+      <div className="">700+ pcs</div>
+      </div>
+    </div>
      <div className="w-75 pt-3">
      <table>
       <tr className='line'>
