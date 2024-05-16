@@ -2,11 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { getNItemsRandomly } from '../../Item/helpers/helpersItems';
 import { ItemContent } from '../../Item/components/ItemContent';
 import { useFetchProductos } from '../../hooks/useFetchProductos';
+import { traductor } from '../../Traductor/traductor';
+import { useGlobalVariable } from '../../Context/MyContextProvider';
 
 export const ListItem = ({items,item}) => {
+  const { globalVariable, setGlobalVariable } = useGlobalVariable();
+console.log({globalVariable})
   const [productosData, setProductosData] = useState([]);
+  console.log(items.length)
   
-  const {isLoadingProductos, productos}= useFetchProductos(0,items,item);
+  const {isLoadingProductos, productos}= useFetchProductos(10-items.length,items,item);
+  console.log({productos})
   const [itemsUnidos, setitemsUnidos] = useState([])  
   useEffect(() => {
     console.log("Debug de items en ListItem")
@@ -20,6 +26,7 @@ export const ListItem = ({items,item}) => {
       setitemsUnidos(productos)
       console.log("aquii")
     }
+    
   }, [items])
   
   useEffect(() => {
@@ -28,9 +35,9 @@ export const ListItem = ({items,item}) => {
           setProductosData(itemsUnidos.slice(0, 10));
         } else if(itemsUnidos.length===0){
 
-          setProductosData(productos);
+          setProductosData(productos.slice(0, 10));
         }else{
-          setProductosData(itemsUnidos);
+          setProductosData(itemsUnidos.concat(productos).slice(0, 10));
 
         }
         }
@@ -49,21 +56,15 @@ export const ListItem = ({items,item}) => {
     console.log("Fin de productosData en ListItem")
 
   }, [itemsUnidos])
-  useEffect(() => {
-    console.log("Debug de productosData en ListItem")
-    console.log({productosData})
-    console.log("Fin de productosData en ListItem")
-
-  }, [itemsUnidos])
   
   return (
     <div className='m-5'>
     <h1 style={{
     }}>
-      Recomended Items: 
+      {traductor("Recomended Items",globalVariable)}: 
       {/* {items.length} */}
       </h1>
-    <div className='row row-cols-6 d-flex justify-content-center'
+    <div className='Related-list row row-cols-6 d-flex justify-content-center'
         style={{
             padding:'10px'
           // maxHeight:'810px',
@@ -71,10 +72,10 @@ export const ListItem = ({items,item}) => {
 
         }}>
          {isLoadingProductos ? (
-                <p>Cargando productos...</p>
+                <p>{traductor("loading")}</p>
             ) : (
                 Object.keys(productosData).map((clave) => (
-            <ItemContent key={clave} item={productosData[clave] } col='col' related='true'/>
+            <ItemContent  item={productosData[clave] } col='col' related='true' key={clave}/>
         ))
         //       productosData.forEach((clave) => (
         //             <ItemContent item={productosData[clave] } col='col' related='true'/>))

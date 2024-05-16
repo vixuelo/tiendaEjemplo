@@ -1,4 +1,5 @@
 import React from 'react'
+import { traductor } from '../../Traductor/traductor'
 
 export const DescContent = ({item}) => {
   return (
@@ -15,11 +16,11 @@ Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa
     </tr>
     <tr>
       <th className=""scope="row">Material</th>
-      <td>{item.material}</td>
+      <td>{traductor(item.material)}</td>
     </tr>
     <tr>
       <th className=""scope="row">design</th>
-      <td >{item.diseño}</td>
+      <td >{traductor(item.diseño)}</td>
     </tr>
     </table>
     <br />

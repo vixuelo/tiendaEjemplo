@@ -46,7 +46,7 @@ export const getImgs=async(category, referencia)=>{
         // url:img.webformatURL}
     ))
     const imgsRet=imgs.filter(img => img)
-    return imgsRet.slice(0,6);
+    return imgsRet.slice(0,7);
    } catch (error) {
     console.log(error)
    }

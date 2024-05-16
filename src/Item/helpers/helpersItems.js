@@ -1,4 +1,5 @@
 import {items} from '../../assets/productos'
+import {empresas} from '../../assets/empresas'
 export const verificarURL = async (url) => {
   if (url === '') {
     return false;
@@ -16,7 +17,28 @@ export const verificarURL = async (url) => {
   }
 }
 
+export const getNRefsRandomly = async (number, itemsActuales = [],item) => {
+  console.log("hola1")
+  if (number === 0) {
+    return [];
+  }
 
+  const itemsReturn = [];
+  
+  // Obtén los índices disponibles excluyendo los elementos actuales
+  const indicesDisponibles = itemsActuales.length > 0
+  ? Array.from({ length: items.length }, (_, i) => i).filter(index => !itemsActuales.includes(items[index]) && items[index] !== item)
+  : Array.from({ length: items.length }, (_, i) => i).filter(index=>items[index] !== item);
+  
+  for (let index = 0; index < number; index++) {
+    const index = Math.floor(Math.random() * indicesDisponibles.length);
+    const randomIndex = indicesDisponibles[index];
+    const item = items[randomIndex];
+    itemsReturn.push(item.referencia);
+    indicesDisponibles.pop(index); // Elimina el índice utilizado
+  }
+  return itemsReturn;
+}
 
 
 export const getNItemsRandomly = async (number, itemsActuales = [],item) => {
@@ -62,6 +84,7 @@ export const filterUniques=(array)=>{return array.filter((value, index, arr) =>
 }
 
 export const getAllItemsBySearch = (search) => {
+  console.log("entrada a search:", search)
   return items.filter(item => {
     // Itera sobre cada campo del item
     for (let key in item) {
@@ -76,4 +99,9 @@ export const getAllItemsBySearch = (search) => {
 export const getAllItems=()=>{
 
   return items;
+}
+
+export const getAllBusiness=()=>{
+
+  return empresas;
 }

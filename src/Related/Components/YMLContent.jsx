@@ -3,6 +3,8 @@ import { getItemById, getNItemsRandomly } from '../../Item/helpers/helpersItems'
 import { YMLitem } from './YMLitem';
 import { useFetchProductos } from '../../hooks/useFetchProductos';
 import { useParams } from 'react-router-dom';
+import { traductor } from '../../Traductor/traductor';
+import { useGlobalVariable } from '../../Context/MyContextProvider';
 const limpiarRepetidos=(items,item)=>{
     const arrayRet =[]
     console.log("items:",{items})
@@ -16,6 +18,8 @@ console.log({arrayRet});
 return arrayRet
 }
 export const YMLContent = ({items,item}) => {
+    const { globalVariable, setGlobalVariable } = useGlobalVariable();
+
     const params = useParams();
     const [productosData, setProductosData] = useState([]);
     const itemsLimpios=limpiarRepetidos(items,item);
@@ -61,11 +65,11 @@ export const YMLContent = ({items,item}) => {
     
     return (
             <div className='d-block-flex '>
-            <h6 className='p-3'>You May Like 
+            <h6 className='p-3'>{traductor("YML", globalVariable)}
             {/* {items.length} */}
             </h6>
             {isLoadingProductos ? (
-                <p>Cargando productos...</p>
+                <p>{traductor("loading", globalVariable)}...</p>
             ) : (
                 Object.keys(productosData).map((clave) => (
                     <YMLitem key={clave} item={productosData[clave]} />

@@ -1,5 +1,6 @@
 {
-  "items": [
+  "items": 
+  [
     {
       "nombre": "Basic T-shirt",
       "url": "https://www.berluti.com/dw/image/v2/BBMR_PRD/on/demandware.static/-/Sites-masterCatalog_Berluti/default/dwc23f237b/images/R25JRS115-001_andy-bar-t-shirt_blanc-optique_berluti_01.jpg?sw=640&sfrm=jpg",
@@ -13,7 +14,7 @@
       "marca": "Generic",
       "vendedor": "FashionWorld",
       "referencia": 0,
-      "subcategoria": "camisa ",
+      "subcategoria": "T-shirt ",
       "rating": 4.3
     },
     {
@@ -45,7 +46,7 @@
       "marca": "Coach",
       "vendedor": "FashionWorld",
       "referencia": 2,
-      "subcategoria": "Wallets",
+      "subcategoria": "Accessories",
       "rating": 4.1
     },
     {
@@ -125,7 +126,7 @@
       "marca": "Zara",
       "vendedor": "FashionWorld",
       "referencia": 7,
-      "subcategoria": "Scarves",
+      "subcategoria": "Accessories",
       "rating": 4.0
     },
     {
@@ -509,7 +510,7 @@
       "marca": "West Elm",
       "vendedor": "FashionWorld",
       "referencia": 31,
-      "subcategoria": "Flowerpot",
+      "subcategoria": "Accessories",
       "rating": 4.4
     },
     {
@@ -541,7 +542,7 @@
       "marca": "Hydro Flask",
       "vendedor": "FashionWorld",
       "referencia": 33,
-      "subcategoria": "Sports Accessories",
+      "subcategoria": "Accessories",
       "rating": 4.2
     },
     {
@@ -605,7 +606,7 @@
       "marca": "Williams Sonoma",
       "vendedor": "FashionWorld",
       "referencia": 37,
-      "subcategoria": "Home Accessories",
+      "subcategoria": "Accessories",
       "rating": 4.2
     },
     {

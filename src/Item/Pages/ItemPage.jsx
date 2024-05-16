@@ -95,7 +95,7 @@ export const ItemPage = () => {
      </div>
      <div className="sellercnt d-block ">
        <SellerInfo vendedor={vendedor}/>
-       <LikeContent/> 
+       <LikeContent item ={itemId}/> 
      </div>
       </div>
     </div>

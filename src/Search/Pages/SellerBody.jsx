@@ -17,8 +17,8 @@ import { traductor } from '../../Traductor/traductor.js';
 import { DropDownItemsNumber } from '../../UI/Components/DropDown.jsx';
 
 
-export const SearchBody = ({ search }) => {
-  const [searchContent, setSearchContent] = useState();
+export const SellerBody = ({ search }) => {
+  const [searchContent, setSearchContent] = useState([]);
   const [number, setnumber] = useState(()=>{
     if(searchContent?.length<9){
       return searchContent.length
@@ -53,8 +53,8 @@ useEffect(() => {
   //   console.log("debug de number: ",number);
   //  }
   
-  console.log(queryString.parse(search).q)
-      setSearchContent(getAllItemsBySearch(queryString.parse(search).q));
+  console.log(queryString.parse(search).v)
+      setSearchContent(getAllItemsBySearch(queryString.parse(search).v));
   }, [search]);
   useEffect(() => {
     console.log("debug searchContent: ", searchContent)
@@ -158,28 +158,13 @@ useEffect(() => {
 
   return (
     <>
-      {productosDivididos.length > 0 ? (
-        <>
         
           <div className='d-block-flex'>
-        {/* { q&&
-        (  */}
-        <div className="alert alert-success text-center">
-          {traductor("Results")} <b>{queryString.parse(search).q}</b>
-        </div>
-        {/* )
-        }
-        {v&& (
-          <SellerInfo vendedor={getVendedorbyName(query)} search={true}/>
-        )}
-        {c&& ( <div className='d-flex justify-content-center'>
-          <div className=" text-center">
-           <h1>{traductor(query)}</h1> <img className='w-25' src={imagenes[0]?.url} />
-        </div>
-        </div>)}
-        { f &&( <div className="alert alert-success text-center">
-          <b>{traductor("favorites_products")}</b>
-        </div>)} */}
+      
+   
+       
+          <SellerInfo vendedor={getVendedorbyName(queryString.parse(search).v)} search={true}/>
+       
         <div className=" d-flex flex-row">
 <div className=" pl-5 d-flex align-items-center">
     <button className="btn btn-primary" onClick={rePag}>{"<"}</button>
@@ -207,12 +192,7 @@ useEffect(() => {
                     >
                       {productosDivididos.length-index}
                     </button>
-                  //    {Object.keys(productosDivididos).map((clave)=>(
-                  //     <button key={clave} onClick={()=>cambioPagina(productosDivididos.length-clave)} 
-                  //     className={(productosDivididos.length-clave)===pag+1?' btn btn-primary':'btn btn-secondary'}>
-                  //       {productosDivididos.length-clave}</button>
-                  // )
-                  // )}
+                  
                   )):null}
               </div>
               
@@ -223,19 +203,7 @@ useEffect(() => {
               
               </div>
           </div>
-        </>
-      ) : 
-      (
-      // !f?
-       ( <div className="alert alert-danger">
-      {traductor("404search")}<b>{queryString.parse(search).q}</b>
-    </div>)
-    // :
-    //  <div className="alert alert-danger">
-    //   {traductor("no_favorites")}
-    // </div>
-      )
-      }
+        
     </>
   );
 };

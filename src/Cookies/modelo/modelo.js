@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllItems } from "../../Item/helpers/helpersItems";
+import { getAllItems, getNItemsRandomly, getNRefsRandomly } from "../../Item/helpers/helpersItems";
 
 const limpiarCookies = (cookies)=>{
     const resultado = [];
@@ -20,11 +20,14 @@ const limpiarCookies = (cookies)=>{
 
 export const modeloIntegrado = async (num_results, cookies = [], setprediccion,mainpage=false) => {
     
-    console.log({ cookies });
-    const cookiesLimpias = limpiarCookies(cookies);
+    console.log({ cookies, mainpage });
+    var cookiesLimpias = limpiarCookies(cookies);
+    if (cookiesLimpias.length < 6) {
+        cookiesLimpias=await getNRefsRandomly(6);
+    }
+    
     console.log({ cookiesLimpias })
-    if (cookiesLimpias.length > 6) {
-        if(mainpage===true){
+    if(mainpage===true){
         const model = modelo(15);
         const secuencias_truncadas = sliceTamanoN(cookiesLimpias, 3);
         const clientes = [];
@@ -42,7 +45,7 @@ export const modeloIntegrado = async (num_results, cookies = [], setprediccion,m
         }
 
         const { X, y } = prepararDatos(clientes);
-        const number_epochs = 200;
+        const number_epochs = 50;
         try {
             await model.fit(X, y, {
                 epochs: number_epochs,
@@ -70,7 +73,8 @@ export const modeloIntegrado = async (num_results, cookies = [], setprediccion,m
         }
         const saveResult = await model.save('localstorage://modelo');
         console.log(saveResult)
-    }else{
+    
+    }else{ 
         // Paso 1: Obtén el JSON del modelo almacenado en localStorage
  
  const model = await tf.loadLayersModel('localstorage://modelo').then(modeloTensorFlow => {
@@ -93,9 +97,7 @@ export const modeloIntegrado = async (num_results, cookies = [], setprediccion,m
    console.error('Error al cargar el modelo:', error);
  });
      }
-    } else {
-        console.log("Pocas cookies", cookiesLimpias);
-    }
+  
 };
 
 export const sliceTamanoN=(array, tamanoTrozo)=> {

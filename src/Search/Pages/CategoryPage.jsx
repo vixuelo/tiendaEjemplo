@@ -17,7 +17,7 @@ import { traductor } from '../../Traductor/traductor.js';
 import { DropDownItemsNumber } from '../../UI/Components/DropDown.jsx';
 
 
-export const SearchBody = ({ search }) => {
+export const CategoryBody = ({ search }) => {
   const [searchContent, setSearchContent] = useState();
   const [number, setnumber] = useState(()=>{
     if(searchContent?.length<9){
@@ -31,6 +31,7 @@ export const SearchBody = ({ search }) => {
   const [productosDivididos, setProductosDivididos] = useState([]);
   const [pag, setPag] = useState(0);
  
+  const {imagenes, cargando}= useFetchImgs(queryString.parse(search).c)
 
   
 useEffect(() => {
@@ -53,8 +54,8 @@ useEffect(() => {
   //   console.log("debug de number: ",number);
   //  }
   
-  console.log(queryString.parse(search).q)
-      setSearchContent(getAllItemsBySearch(queryString.parse(search).q));
+  console.log(queryString.parse(search).c)
+      setSearchContent(getAllItemsBySearch(queryString.parse(search).c));
   }, [search]);
   useEffect(() => {
     console.log("debug searchContent: ", searchContent)
@@ -162,24 +163,13 @@ useEffect(() => {
         <>
         
           <div className='d-block-flex'>
-        {/* { q&&
-        (  */}
-        <div className="alert alert-success text-center">
-          {traductor("Results")} <b>{queryString.parse(search).q}</b>
-        </div>
-        {/* )
-        }
-        {v&& (
-          <SellerInfo vendedor={getVendedorbyName(query)} search={true}/>
-        )}
-        {c&& ( <div className='d-flex justify-content-center'>
+        
+        <div className='d-flex justify-content-center'>
           <div className=" text-center">
-           <h1>{traductor(query)}</h1> <img className='w-25' src={imagenes[0]?.url} />
+           <h1>{traductor(queryString.parse(search).c)}</h1> <img className='w-25' src={imagenes[0]?.url} />
         </div>
-        </div>)}
-        { f &&( <div className="alert alert-success text-center">
-          <b>{traductor("favorites_products")}</b>
-        </div>)} */}
+        </div>
+   
         <div className=" d-flex flex-row">
 <div className=" pl-5 d-flex align-items-center">
     <button className="btn btn-primary" onClick={rePag}>{"<"}</button>
@@ -228,7 +218,7 @@ useEffect(() => {
       (
       // !f?
        ( <div className="alert alert-danger">
-      {traductor("404search")}<b>{queryString.parse(search).q}</b>
+      {traductor("404search")}<b>{queryString.parse(search).c}</b>
     </div>)
     // :
     //  <div className="alert alert-danger">
