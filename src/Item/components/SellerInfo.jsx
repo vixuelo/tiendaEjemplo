@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGlobalVariable } from '../../Context/MyContextProvider';
 import { traductor } from '../../Traductor/traductor';
 
-export const SellerInfo = ({vendedor, search = false}) => {
+export const SellerInfo = ({ vendedor, search = false }) => {
   const { globalVariable, setGlobalVariable } = useGlobalVariable();
   const navigate = useNavigate();
 
@@ -11,7 +11,7 @@ export const SellerInfo = ({vendedor, search = false}) => {
     navigate(`/main?v=${vendedor.nombre}`);
   };
 
-  return ( 
+  return (
     <div className="d-block border p-2 rounded">
       <div className="d-inline-flex">
         <div className="lettervendor d-flex rounded text-info">{vendedor?.nombre[0]}</div>
@@ -21,7 +21,7 @@ export const SellerInfo = ({vendedor, search = false}) => {
       </div>
       <hr />
       <h4 className="dataSeller d-flex justify-content-start">
-        <img className='imgVendor' src={`/src/assets/Flags/${vendedor?.pais}/flag.svg`} alt="flag" />
+        <img className='imgVendor' src={`Flags/${vendedor?.pais}/flag.svg`} alt="flag" />
         {`${vendedor?.pais},${vendedor?.ciudad}`}
       </h4>
       <h4 className="dataSeller"><img src="\src\assets\Layout\users\verified_user.png" alt="tV" /> {traductor("verified")}</h4>

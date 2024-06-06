@@ -14,7 +14,7 @@ export const NavBar = () => {
     const onClickItem = () => {
         navigate(`/`);
     }
-    const favPage=()=>{
+    const favPage = () => {
         navigate(`/main?f=true`)
     }
     const { searchText, onInputChange } = useForm({
@@ -36,29 +36,29 @@ export const NavBar = () => {
             left: 0,
             width: '100%',
             zIndex: 999
-          }}>
-        <nav className="NavBar-nav btn-related-undefined nav navbar navbar-expand-sm justify-content-around" style={{ background: 'white', height: '86px' }}>
-            <button className="navBar-btn-home nav_img" onClick={onClickItem}>
-                <img src='\src\assets\Layout\Brand\logo-colored.png' alt="icon" />
-            </button>
-            
-            <DropDownCategories/>
-            <DropDownSellers/>
-            <button className='btn btn-primary' onClick={()=>favPage()}>Favorites</button>
-            <div style={{ width: '400px' }}>
-                <form className='navBar-form nav_form d-flex align-items-center' onSubmit={onSearchSubmit}>
-                    <input 
-                        name='searchText'
-                        value={searchText}
-                        onChange={onInputChange}
-                        onBlur={onInputChange}
-                        className='nav_form_input form-control'
-                        type="text"
-                    />
-                    <button className=' navBar-btn-search nav_form_button btn btn-primary'>{traductor("Search",globalVariable )}</button>
-                </form>
-            </div>
-        </nav>
+        }}>
+            <nav className="NavBar-nav btn-related-undefined nav navbar navbar-expand-sm justify-content-around" style={{ background: 'white', height: '86px' }}>
+                <button className="navBar-btn-home nav_img" onClick={onClickItem}>
+                    <img src='Layout\Brand\logo-colored.png' alt="icon" />
+                </button>
+
+                <DropDownCategories />
+                <DropDownSellers />
+                <button className='btn btn-primary' onClick={() => favPage()}>Favorites</button>
+                <div style={{ width: '400px' }}>
+                    <form className='navBar-form nav_form d-flex align-items-center' onSubmit={onSearchSubmit}>
+                        <input
+                            name='searchText'
+                            value={searchText}
+                            onChange={onInputChange}
+                            onBlur={onInputChange}
+                            className='nav_form_input form-control'
+                            type="text"
+                        />
+                        <button className=' navBar-btn-search nav_form_button btn btn-primary'>{traductor("Search", globalVariable)}</button>
+                    </form>
+                </div>
+            </nav>
         </div>
     )
 }

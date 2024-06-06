@@ -3,15 +3,15 @@ import { useGlobalVariable } from '../../Context/MyContextProvider';
 import { traductor } from '../../Traductor/traductor';
 
 export const DetailsContent = ({ item }) => {
-  
+
   return (
     <>
-      <img className='detailsContainer' src="src\assets\stock\Aviable.svg" alt="" />
+      <svg className='detailsContainer' src=".\src\assets\stock\Aviable.svg" alt="" />
       <h1 className='w-75 detailscntTitle'>{item.nombre}</h1>
       <h3>{item.precio}€</h3>
 
       <div className="d-flex w-50">
-        <img src={`/src/assets/Layout/Stars/${Math.floor(item.rating)}stars.png`} alt="stars" 
+        <img src={`Layout/Stars/${Math.floor(item.rating)}stars.png`} alt="stars"
           style={{
             objectFit: 'contain'
           }}
@@ -21,15 +21,15 @@ export const DetailsContent = ({ item }) => {
 
       <div className="d-flex justify-content-start pt-1 pb-1 descuentosCnt">
         <div className="d-block-flex descuentos">
-          <div className="">{Math.floor(item.precio*0.90)}.00€</div>
+          <div className="">{Math.floor(item.precio * 0.90)}.00€</div>
           <div className="">50-100 pcs</div>
         </div>
         <div className="d-block-flex descuentos">
-          <div className="">{Math.floor(item.precio*0.70)}.00€</div>
+          <div className="">{Math.floor(item.precio * 0.70)}.00€</div>
           <div className="">100-700 pcs</div>
         </div>
         <div className="d-block-flex descuentos">
-          <div className="">{Math.floor(item.precio*0.50)}.00€</div>
+          <div className="">{Math.floor(item.precio * 0.50)}.00€</div>
           <div className="">700+ pcs</div>
         </div>
       </div>

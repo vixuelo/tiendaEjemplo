@@ -103,8 +103,8 @@ export const DropDownItemsNumber = ({ number = 5, setNumber, min = 1, max = 20 }
   );
 };
 
-export const DropDownLanguages = ({ setLanguaje}) => {
-  console.log({idiomasUnicos})
+export const DropDownLanguages = ({ setLanguaje }) => {
+  console.log({ idiomasUnicos })
   const { globalVariable, setGlobalVariable } = useGlobalVariable();
   const [flag, setFlag] = useState(() => {
     switch (globalVariable) {
@@ -120,33 +120,33 @@ export const DropDownLanguages = ({ setLanguaje}) => {
         return "Unknown";
     }
   });
- 
-  const setlan=(lan)=>{
-    const flag=document.getElementById("flag")
-    flag.src=`/src/assets/Flags/${lan}/flag.svg`
+
+  const setlan = (lan) => {
+    const flag = document.getElementById("flag")
+    flag.src = `Flags/${lan}/flag.svg`
     switch (lan) {
       case "Spain":
         setGlobalVariable("es");
-        break;case "Germany":
+        break; case "Germany":
         setGlobalVariable("de");
-        break;case "USA":
+        break; case "USA":
         setGlobalVariable("en");
-        break;case "France":
+        break; case "France":
         setGlobalVariable("fra");
         break;
     }
   }
   return (
-    <div className='w-50  text-end d-flex  justify-content-end'>  <img id='flag' className='imgLan' 
-        
-        src={`/src/assets/Flags/${flag}/flag.svg`} alt="" />
-    <DropdownButton id="dropdown-basic" drop={'up'} title={traductor("languages")}>
-      {idiomasUnicos.map((lan, index) => (
-        <Dropdown.Item key={index} onClick={() => setlan(lan)}>
-          {lan}
-        </Dropdown.Item>
-      ))}
-    </DropdownButton>
+    <div className='w-50  text-end d-flex  justify-content-end'>  <img id='flag' className='imgLan'
+
+      src={`Flags/${flag}/flag.svg`} alt="" />
+      <DropdownButton id="dropdown-basic" drop={'up'} title={traductor("languages")}>
+        {idiomasUnicos.map((lan, index) => (
+          <Dropdown.Item key={index} onClick={() => setlan(lan)}>
+            {lan}
+          </Dropdown.Item>
+        ))}
+      </DropdownButton>
     </div>
   );
 };
