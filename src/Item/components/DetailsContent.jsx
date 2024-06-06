@@ -6,7 +6,7 @@ export const DetailsContent = ({ item }) => {
 
   return (
     <>
-      <svg className='detailsContainer' src=".\src\assets\stock\Aviable.svg" alt="" />
+      <svg className='detailsContainer' src="stock\Aviable.svg" alt="" />
       <h1 className='w-75 detailscntTitle'>{item.nombre}</h1>
       <h3>{item.precio}€</h3>
 

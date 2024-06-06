@@ -8,7 +8,7 @@ export const LikeContent = ({ item }) => {
 
   const addLikeList = () => {
     const likeList = JSON.parse(localStorage.getItem("loveList")) || [];
-    console.log({likeList})
+    console.log({ likeList })
     if (!likeList.includes(item)) {
       likeList.push(item);
       const likeJSON = JSON.stringify(likeList);
@@ -25,13 +25,13 @@ export const LikeContent = ({ item }) => {
 
   useEffect(() => {
     const likedJSON = JSON.parse(localStorage.getItem("loveList")) || [];
-    console.log({likedJSON})
+    console.log({ likedJSON })
     setLike(likedJSON.includes(item));
   }, [item]); // Agregar renderCount como dependencia
 
   return (
-    <button className="btn dataSeller m-1 p-3 d-flex justify-content-center" onClick={()=>addLikeList()}>
-      {!Like ? <img className="" src="\src\assets\Layout\Button\likeIt.svg" alt="like" /> : <img src="\src\assets\Layout\Button\likedIt2.svg" alt="like" />}
+    <button className="btn dataSeller m-1 p-3 d-flex justify-content-center" onClick={() => addLikeList()}>
+      {!Like ? <img className="" src="Layout\Button\likeIt.svg" alt="like" /> : <img src="Layout\Button\likedIt2.svg" alt="like" />}
       <h3 className="text-primary m-1 d-flex justify-content-center">{traductor("Save4Ltr")}</h3>
     </button>
   );

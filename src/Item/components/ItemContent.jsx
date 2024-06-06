@@ -131,7 +131,7 @@ export const ItemContent = ({ item, col, related }) => {
           >
             <button className='mt-3 btn border' onClick={(e) => toggleFavorito(e)}>
 
-              {!favorito ? <img className="" src="\src\assets\Layout\Button\likeIt.svg" alt="like" /> : <img src="\src\assets\Layout\Button\likedIt2.svg" alt="like" />}
+              {!favorito ? <img className="" src="Layout\Button\likeIt.svg" alt="like" /> : <img src="Layout\Button\likedIt2.svg" alt="like" />}
             </button>
           </div>
         </div>
