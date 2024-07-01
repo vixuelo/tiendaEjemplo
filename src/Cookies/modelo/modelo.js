@@ -54,11 +54,13 @@ export const modeloIntegrado = async (num_results, cookies = [], setprediccion,m
                         console.log("epoch",epoch,log)
                         if (epoch === number_epochs - 1) {
                             const result = model.predict(tf.tensor1d(cookiesLimpias.slice(cookiesLimpias.length - 10, cookiesLimpias.length))).arraySync();
-                            const predicciones = sliceTamanoN(result[0], getAllItems().length);
+                            //const predicciones = sliceTamanoN(result[0], getAllItems().length);
+                            const predicciones = result[0];
                             console.log({predicciones})
-                            const prediccionesFinalesArr = predicciones.map((prediccion) =>
-                                getAllItems()[argMax(prediccion)]
-                            );
+                            const prediccionesFinalesArr = top10ArgMax(predicciones);
+                            /* predicciones.map((prediccion) =>
+                                //getAllItems()[argMax(prediccion)]
+                            ); */
                             console.log({ prediccionesFinalesArr });
                             
                                 setprediccion(limpiarCookies(prediccionesFinalesArr).slice(-num_results,-1));
@@ -127,6 +129,26 @@ function argMax(array) {
 
   return array.indexOf(Math.max(...numericArray));
 }
+function top10ArgMax(array) {
+    // Filtrar el array para mantener solo los valores numéricos válidos
+    const numericArray = array.map((value, index) => {
+        return { value: value, index: index };
+    }).filter(item => typeof item.value === 'number' && !isNaN(item.value));
+
+    // Verificar si el array está vacío
+    if (numericArray.length === 0) {
+        return -1;
+    }
+
+    // Ordenar el array numérico en orden descendente basado en los valores
+    numericArray.sort((a, b) => b.value - a.value);
+
+    // Seleccionar los primeros 10 elementos
+    const top10 = numericArray.slice(0, 10);
+
+    // Devolver los índices de los 10 valores más altos
+    return top10.map(item => item.index);
+}
 
 const prepararDatos = (clientes) => {
 const  anteriores = [];
@@ -166,7 +188,8 @@ const modelo=(num_products)=>{
   }));
   
   model.add(tf.layers.dense({
-      units: num_products * getAllItems().length,
+      //units: num_products * getAllItems().length,
+      units:getAllItems().length,
       activation: 'softmax',
       name: "dense_layer_2"
   }));
