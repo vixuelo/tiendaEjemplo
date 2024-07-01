@@ -20,13 +20,13 @@ const limpiarCookies = (cookies)=>{
 
 export const modeloIntegrado = async (num_results, cookies = [], setprediccion,mainpage=false) => {
     
-    console.log({ cookies, mainpage });
+    //console.log({ cookies, mainpage });
     var cookiesLimpias = limpiarCookies(cookies);
     if (cookiesLimpias.length < 6) {
         cookiesLimpias=await getNRefsRandomly(6);
     }
     
-    console.log({ cookiesLimpias })
+    //console.log({ cookiesLimpias })
     if(mainpage===true){
         const model = modelo(15);
         const secuencias_truncadas = sliceTamanoN(cookiesLimpias, 3);
@@ -56,16 +56,16 @@ export const modeloIntegrado = async (num_results, cookies = [], setprediccion,m
                             const result = model.predict(tf.tensor1d(cookiesLimpias.slice(cookiesLimpias.length - 10, cookiesLimpias.length))).arraySync();
                             //const predicciones = sliceTamanoN(result[0], getAllItems().length);
                             const predicciones = result[0];
-                            console.log({predicciones})
+                            //console.log({predicciones})
                             const prediccionesFinalesArr = top10ArgMax(predicciones);
                             /* predicciones.map((prediccion) =>
                                 //getAllItems()[argMax(prediccion)]
                             ); */
-                            console.log({ prediccionesFinalesArr });
+                            //console.log({ prediccionesFinalesArr });
                             
                                 setprediccion(limpiarCookies(prediccionesFinalesArr).slice(-num_results,-1));
                              
-                             console.log("predicciones",limpiarCookies(prediccionesFinalesArr),num_results)
+                             //console.log("predicciones",limpiarCookies(prediccionesFinalesArr),num_results)
                         }
                     }
                 }
@@ -74,7 +74,7 @@ export const modeloIntegrado = async (num_results, cookies = [], setprediccion,m
             console.error('Error ajustando el modelo:', error);
         }
         const saveResult = await model.save('localstorage://modelo');
-        console.log(saveResult)
+        //console.log(saveResult)
     
     }else{ 
         // Paso 1: Obtén el JSON del modelo almacenado en localStorage
@@ -84,15 +84,15 @@ export const modeloIntegrado = async (num_results, cookies = [], setprediccion,m
    console.log('Modelo cargado:', modeloTensorFlow);
    const result = modeloTensorFlow.predict(tf.tensor1d(cookiesLimpias.slice(cookiesLimpias.length - 10, cookiesLimpias.length))).arraySync();
    const predicciones = sliceTamanoN(result[0], getAllItems().length);
-   console.log({predicciones})
+   //console.log({predicciones})
    const prediccionesFinalesArr = predicciones.map((prediccion) =>
        getAllItems()[argMax(prediccion)]
    );
-   console.log({ prediccionesFinalesArr });
+   //console.log({ prediccionesFinalesArr });
  
     setprediccion(limpiarCookies(prediccionesFinalesArr));
  
- console.log("predicciones no main",limpiarCookies(prediccionesFinalesArr),num_results)
+ //console.log("predicciones no main",limpiarCookies(prediccionesFinalesArr),num_results)
    // Ahora puedes usar el modelo TensorFlow aquí
  }).catch(error => {
    // Ocurrió un error al cargar el modelo

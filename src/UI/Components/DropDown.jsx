@@ -56,7 +56,7 @@ export const DropDownSellers = () => {
 };
 
 export const DropDownItemsNumber = ({ number = 5, setNumber, min = 1, max = 20 }) => {
-  console.log({ min, number });
+  //console.log({ min, number });
   const [numero, setNumero] = useState(number);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -69,14 +69,14 @@ export const DropDownItemsNumber = ({ number = 5, setNumber, min = 1, max = 20 }
   };
 
   const handleDropdownToggle = (isOpen) => {
-    console.log({ numero, number });
+    //console.log({ numero, number });
     // isOpen indica si el dropdown está abierto o cerrado
     setIsOpen(isOpen);
 
     if (!isOpen) {
       // El dropdown se ha cerrado
       setNumber(numero);
-      console.log({ numero });
+      //console.log({ numero });
     }
   };
 
@@ -104,7 +104,7 @@ export const DropDownItemsNumber = ({ number = 5, setNumber, min = 1, max = 20 }
 };
 
 export const DropDownLanguages = ({ setLanguaje }) => {
-  console.log({ idiomasUnicos })
+  //console.log({ idiomasUnicos })
   const { globalVariable, setGlobalVariable } = useGlobalVariable();
   const [flag, setFlag] = useState(() => {
     switch (globalVariable) {

@@ -8,7 +8,7 @@ export const LikeContent = ({ item }) => {
 
   const addLikeList = () => {
     const likeList = JSON.parse(localStorage.getItem("loveList")) || [];
-    console.log({ likeList })
+    //console.log({ likeList })
     if (!likeList.includes(item)) {
       likeList.push(item);
       const likeJSON = JSON.stringify(likeList);
@@ -25,7 +25,7 @@ export const LikeContent = ({ item }) => {
 
   useEffect(() => {
     const likedJSON = JSON.parse(localStorage.getItem("loveList")) || [];
-    console.log({ likedJSON })
+    //console.log({ likedJSON })
     setLike(likedJSON.includes(item));
   }, [item]); // Agregar renderCount como dependencia
 

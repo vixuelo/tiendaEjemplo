@@ -24,7 +24,7 @@ export const NavBar = () => {
     const onSearchSubmit = (event) => {
         event.preventDefault();
         if (searchText.trim() !== '') {
-            console.log({ searchText });
+            //console.log({ searchText });
             navigate(`/main?q=${searchText}`);
         }
     }

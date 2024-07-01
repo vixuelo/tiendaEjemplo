@@ -10,16 +10,16 @@ export const PhotosContent = ({ item }) => {
   const [index, setIndex] = useState(0);
   const [imagePrc, setImagePrc] = useState(item.url);
   const [imagePrcName, setImagePrcName] = useState("img1");
-  const nombre =item.subcategoria.replaceAll(" ", "+");
-  console.log("nombre en peticion:", nombre)
+  const nombre = item.subcategoria.replaceAll(" ", "+");
+  //console.log("nombre en peticion:", nombre)
   const { imagenes, cargando } = useFetchImgs(nombre, item.referencia);
   useEffect(() => {
-   
-   console.log("Debug de imagenes en PhotosContent")
-    console.log({imagenes,index,cargando})
-    console.log("nombre:",item.nombre)
-    console.log("fin de imagenes en PhotosContent")
-  }, [cargando, imagenes,index,item])
+
+    //console.log("Debug de imagenes en PhotosContent")
+    //console.log({imagenes,index,cargando})
+    //console.log("nombre:",item.nombre)
+    //console.log("fin de imagenes en PhotosContent")
+  }, [cargando, imagenes, index, item])
   useEffect(() => {
     if (imagenes.length > 0) {
       setImagePrc(imagenes[0].url)
@@ -31,7 +31,7 @@ export const PhotosContent = ({ item }) => {
     setOpen(true);
   };
 
- 
+
 
   const selectPhoto = (index) => {
     if (imagePrc === imagenes[index].url) {
@@ -55,15 +55,15 @@ export const PhotosContent = ({ item }) => {
         alt={imagePrcName}
         id={`image${item.referencia}`}
         onClick={showModal}
-         // You might want to handle image loading errors here
+        // You might want to handle image loading errors here
         className='principal border rounded'
       />
-     
+
       {isOpen && (
         <ModalContent onClose={() => setIsopen(false)}>
           <img
-          className='d-flex justify-content-center'
-          src={imagePrc}
+            className='d-flex justify-content-center'
+            src={imagePrc}
             alt={imagePrcName}
           />
         </ModalContent>

@@ -1,5 +1,5 @@
-import {items} from '../../assets/productos'
-import {empresas} from '../../assets/empresas'
+import { items } from '../../assets/productos'
+import { empresas } from '../../assets/empresas'
 export const verificarURL = async (url) => {
   if (url === '') {
     return false;
@@ -17,19 +17,19 @@ export const verificarURL = async (url) => {
   }
 }
 
-export const getNRefsRandomly = async (number, itemsActuales = [],item) => {
-  console.log("hola1")
+export const getNRefsRandomly = async (number, itemsActuales = [], item) => {
+  //console.log("hola1")
   if (number === 0) {
     return [];
   }
 
   const itemsReturn = [];
-  
+
   // Obtén los índices disponibles excluyendo los elementos actuales
   const indicesDisponibles = itemsActuales.length > 0
-  ? Array.from({ length: items.length }, (_, i) => i).filter(index => !itemsActuales.includes(items[index]) && items[index] !== item)
-  : Array.from({ length: items.length }, (_, i) => i).filter(index=>items[index] !== item);
-  
+    ? Array.from({ length: items.length }, (_, i) => i).filter(index => !itemsActuales.includes(items[index]) && items[index] !== item)
+    : Array.from({ length: items.length }, (_, i) => i).filter(index => items[index] !== item);
+
   for (let index = 0; index < number; index++) {
     const index = Math.floor(Math.random() * indicesDisponibles.length);
     const randomIndex = indicesDisponibles[index];
@@ -41,19 +41,19 @@ export const getNRefsRandomly = async (number, itemsActuales = [],item) => {
 }
 
 
-export const getNItemsRandomly = async (number, itemsActuales = [],item) => {
-  console.log("hola1")
+export const getNItemsRandomly = async (number, itemsActuales = [], item) => {
+  //console.log("hola1")
   if (number === 0) {
     return [];
   }
 
   const itemsReturn = [];
-  
+
   // Obtén los índices disponibles excluyendo los elementos actuales
   const indicesDisponibles = itemsActuales.length > 0
-  ? Array.from({ length: items.length }, (_, i) => i).filter(index => !itemsActuales.includes(items[index]) && items[index] !== item)
-  : Array.from({ length: items.length }, (_, i) => i).filter(index=>items[index] !== item);
-  
+    ? Array.from({ length: items.length }, (_, i) => i).filter(index => !itemsActuales.includes(items[index]) && items[index] !== item)
+    : Array.from({ length: items.length }, (_, i) => i).filter(index => items[index] !== item);
+
   for (let index = 0; index < number; index++) {
     const index = Math.floor(Math.random() * indicesDisponibles.length);
     const randomIndex = indicesDisponibles[index];
@@ -63,28 +63,29 @@ export const getNItemsRandomly = async (number, itemsActuales = [],item) => {
   }
   return itemsReturn;
 }
-export const getItemById=(id)=>{
-  return items.find(item=>item.referencia==id);
+export const getItemById = (id) => {
+  return items.find(item => item.referencia == id);
 }
-export const parseoPredicion=(prediccion)=>{
-  if(prediccion===null){
+export const parseoPredicion = (prediccion) => {
+  if (prediccion === null) {
     return [];
   }
-  const indexPredicciones=[]
-  prediccion.map((pred)=>{
-      indexPredicciones.push(getItemById(pred))
+  const indexPredicciones = []
+  prediccion.map((pred) => {
+    indexPredicciones.push(getItemById(pred))
   })
   return indexPredicciones;
 }
 
 
-export const filterUniques=(array)=>{return array.filter((value, index, arr) => 
-  value !== undefined && arr.indexOf(value) === index
-);
+export const filterUniques = (array) => {
+  return array.filter((value, index, arr) =>
+    value !== undefined && arr.indexOf(value) === index
+  );
 }
 
 export const getAllItemsBySearch = (search) => {
-  console.log("entrada a search:", search)
+  //console.log("entrada a search:", search)
   return items.filter(item => {
     // Itera sobre cada campo del item
     for (let key in item) {
@@ -96,12 +97,12 @@ export const getAllItemsBySearch = (search) => {
     return false; // Retorna false si la búsqueda no se encuentra en ningún campo
   });
 }
-export const getAllItems=()=>{
+export const getAllItems = () => {
 
   return items;
 }
 
-export const getAllBusiness=()=>{
+export const getAllBusiness = () => {
 
   return empresas;
 }

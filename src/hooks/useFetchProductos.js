@@ -7,20 +7,20 @@ export const useFetchProductos = (numero, items, item) => {
     const [productos, setProductos] = useState([]);
     const [isLoadingProductos, setIsLoading] = useState(true);
     useEffect(() => {
-        console.log("Debug productos en fetchproductos")
-        console.log(productos)
-        console.log("fin productos en fetchproductos")
+        //console.log("Debug productos en fetchproductos")
+        //console.log(productos)
+        //console.log("fin productos en fetchproductos")
     }, [productos])
     useEffect(() => {
-        console.log("Debug isLoadingProductos en fetchproductos")
-        console.log(isLoadingProductos)
-        console.log("fin isLoadingProductos en fetchproductos")
+        //console.log("Debug isLoadingProductos en fetchproductos")
+        //console.log(isLoadingProductos)
+        //console.log("fin isLoadingProductos en fetchproductos")
     }, [isLoadingProductos])
 
     useEffect(() => {
-        console.log("Debug item en fetchproductos")
-        console.log(item)
-        console.log("fin item en fetchproductos")
+        //console.log("Debug item en fetchproductos")
+        //console.log(item)
+        //console.log("fin item en fetchproductos")
     }, [item])
     useEffect(() => {
         const getProductos = async () => {

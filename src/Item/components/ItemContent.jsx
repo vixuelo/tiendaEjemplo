@@ -8,17 +8,17 @@ import { traductor } from '../../Traductor/traductor';
 
 export const ItemContent = ({ item, col, related }) => {
   if (!related) {
-    console.log("nombre del desaparecido: ", item.nombre);
+    //console.log("nombre del desaparecido: ", item.nombre);
   }
   const navigate = useNavigate();
   const params = useParams();
 
   if (!isNaN(item)) {
-    console.log({ item });
+    //console.log({ item });
     item = getItemById(item);
 
-    console.log({ item });
-  } console.log(item);
+    //console.log({ item });
+  } //console.log(item);
   const nombre = item.subcategoria.replaceAll(' ', '+');
   const { imagenes, cargando } = useFetchImgs(nombre);
 
@@ -32,12 +32,12 @@ export const ItemContent = ({ item, col, related }) => {
       const imagen = document.getElementById(`image${item.referencia}`);
       imagen.src = imagenes[indexImg]?.url;
     }
-    console.log('Debug de imagenes en itemContent');
-    console.log({ imagenes, indexImg });
-    console.log('nombre:', item.nombre);
-    console.log('fin de imagenes en itemContent');
+    //console.log('Debug de imagenes en itemContent');
+    //console.log({ imagenes, indexImg });
+    //console.log('nombre:', item.nombre);
+    //console.log('fin de imagenes en itemContent');
     const likedJSON = JSON.parse(localStorage.getItem("loveList")) || [];
-    console.log({ likedJSON })
+    //console.log({ likedJSON })
     setFavorito(likedJSON.includes(item.referencia));
   }, [cargando, imagenes, indexImg, item]);
 
@@ -65,7 +65,7 @@ export const ItemContent = ({ item, col, related }) => {
   const toggleFavorito = (e) => {
     e.stopPropagation(); // Evitar que el clic se propague al botón padre
     const likeList = JSON.parse(localStorage.getItem("loveList")) || [];
-    console.log({ likeList })
+    //console.log({ likeList })
     if (!likeList.includes(item.referencia)) {
       likeList.push(item.referencia);
       const likeJSON = JSON.stringify(likeList);
